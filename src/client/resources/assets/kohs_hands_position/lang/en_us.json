@@ -1,0 +1,5 @@
+{
+  "screen.kohs_hands_position.size": "Hand size: %s",
+  "screen.kohs_hands_position.spacing": "Hand spacing: %s",
+  "screen.kohs_hands_position.join_world": "Join a world to preview your hands."
+}

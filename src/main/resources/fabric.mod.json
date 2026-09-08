@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "kohs_hands_position",
+  "version": "${version}",
+  "name": "KoHs Hands Position",
+  "description": "Adjust first-person hand size and spacing with a live preview above a translucent purple background.",
+  "authors": ["Zymekoh"],
+  "license": "All Rights Reserved",
+  "icon": "assets/kohs_hands_position/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["dev.zymekoh.handposition.HandsPositionClient"],
+    "modmenu": ["dev.zymekoh.handposition.ModMenuIntegration"]
+  },
+  "mixins": ["kohs_hands_position.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "26.1.2",
+    "java": ">=25",
+    "fabric-api": "*"
+  },
+  "suggests": { "modmenu": "*" }
+}
