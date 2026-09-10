@@ -3,6 +3,7 @@ package dev.zymekoh.handposition.mixin;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.zymekoh.handposition.gui.HandsConfigScreen;
+import dev.zymekoh.handposition.HandSide;
 import dev.zymekoh.handposition.render.HandTransform;
 import dev.zymekoh.handposition.render.HandsPreviewRenderer;
 import net.minecraft.client.Minecraft;
@@ -28,7 +29,15 @@ public abstract class ItemInHandRendererMixin {
     private void kohs$transformHand(AbstractClientPlayer player, float partialTick, float pitch,
                                     InteractionHand hand, float attack, ItemStack item, float equip,
                                     PoseStack poses, SubmitNodeCollector collector, int light, CallbackInfo ci) {
-        HandTransform.apply(poses, hand == InteractionHand.MAIN_HAND ? player.getMainArm() : player.getMainArm().getOpposite());
+        var gameState = Minecraft.getInstance().gameRenderer.getGameRenderState();
+        float fov = gameState.levelRenderState.cameraRenderState.hudFov;
+        float aspect = (float) gameState.windowRenderState.width / Math.max(1, gameState.windowRenderState.height);
+        if (HandsPreviewRenderer.isRenderingPreview()) {
+            fov = HandsPreviewRenderer.previewFov();
+            aspect = HandsPreviewRenderer.previewAspect();
+        }
+        HandTransform.apply(poses, hand == InteractionHand.MAIN_HAND ? HandSide.MAIN : HandSide.OFF,
+                hand == InteractionHand.MAIN_HAND ? player.getMainArm() : player.getMainArm().getOpposite(), fov, aspect);
     }
 
     @ModifyExpressionValue(method = "renderArmWithItem", at = @At(value = "INVOKE",

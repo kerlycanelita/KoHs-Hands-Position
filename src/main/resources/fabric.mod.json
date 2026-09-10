@@ -3,7 +3,7 @@
   "id": "kohs_hands_position",
   "version": "${version}",
   "name": "KoHs Hands Position",
-  "description": "Adjust first-person hand size and spacing with a live preview above a translucent purple background.",
+  "description": "Adjust global or per-hand size and spacing, then move each hand freely with a live preview.",
   "authors": ["Zymekoh"],
   "license": "All Rights Reserved",
   "icon": "assets/kohs_hands_position/icon.png",
