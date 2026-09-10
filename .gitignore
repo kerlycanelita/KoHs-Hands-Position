@@ -46,3 +46,13 @@ Thumbs.db
 dev-reference/
 # Notas de generacion del icono
 art/
+
+# Machine-local settings and diagnostics
+.claude/settings.local.json
+.env
+.env.*
+!.env.example
+*.jfr
+*.hprof
+__pycache__/
+*.pyc
